@@ -1,0 +1,30 @@
+{
+    "id": "bf4e2374-f871-4565-b879-d1996414aa03",
+    "name": "ReplaceEnvVars",
+    "friendlyName": "Replace Env Vars in Appsettings json on artifacts",
+    "description": "Replace appsettings json variables with the variables defined in release enviroments on builded artifacts",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "author": "Eduardo.mx",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 0
+    },
+    "instanceNameFormat": "Echo $(appsetingsFile)",
+    "inputs": [
+        {
+            "name": "appsettingsname",
+            "type": "string",
+            "label": "appsettings json file name",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "appsettings json file name"
+        }
+    ],
+    "execution": {
+        "Node": {
+            "target": "index.js"
+        }
+    }
+}

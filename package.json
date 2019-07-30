@@ -1,0 +1,29 @@
+{
+  "name": "MicrosoftDevOpsExtensions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/internetgdl/MicrosoftDevOpsExtensions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/internetgdl/MicrosoftDevOpsExtensions/issues"
+  },
+  "homepage": "https://github.com/internetgdl/MicrosoftDevOpsExtensions#readme",
+  "description": "",
+  "dependencies": {
+    "azure-pipelines-task-lib": "^2.8.0",
+    "vss-web-extension-sdk": "^5.141.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.8",
+    "@types/q": "^1.5.2"
+  }
+}
