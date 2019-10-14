@@ -8,13 +8,13 @@
     "author": "Eduardo.mx",
     "version": {
         "Major": 0,
-        "Minor": 1,
-        "Patch": 0
+        "Minor": 0,
+        "Patch": 12
     },
-    "instanceNameFormat": "Echo $(appsetingsFile)",
+    "instanceNameFormat": "Name of the json configuration $(appsetingsFile)",
     "inputs": [
         {
-            "name": "appsettingsname",
+            "name": "appsettingsName",
             "type": "string",
             "label": "appsettings json file name",
             "defaultValue": "",
@@ -23,8 +23,10 @@
         }
     ],
     "execution": {
-        "Node": {
-            "target": "index.js"
+        "PowerShell3": {
+            "target": "$(currentDirectory)\\replaceTokens.ps1",
+            "argumentFormat": "",
+            "workingDirectory": "$(currentDirectory)"
         }
     }
 }

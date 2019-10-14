@@ -1,4 +1,4 @@
-Create Microsoft DevOps Extension
+# Create Microsoft DevOps Extension
 
 DevOps is methodology of software development that the focus is the process in that Develop and Operations works together; from the requirements, analysis the requirements, desing the use cases and the test cases, develop the code, test the code, integrate the code test the functionality, release the project and improve the security performance and the project as it self.
 
@@ -20,14 +20,105 @@ In this tutorial I'm going to show you how to create and Microsoft DevOps extens
 
 The requierement was replace the tokens of a appsettings.json for the enviroments vars defined by the configuration of the release enviroment, this because atleast in the xxxxxx version of TFS are imposible to replace the appsettings values for the linux webapps. If you what to read the article the link is here https://github.com/internetgdl/DevOpsCDReplaceTokens
 
+For this requierement we going to create a Release Task
 
 Firts.
 
 We have to create the folder that we goint to create the projects
-install the NPM package manifest
+
+`mkdir extension` 
+
+
+initialize the NPM package manifest
+
+`npm init -y`
+
 Install the Microsoft VSS Web Extension
-Then create the extension manifest
-Now create the HUB, is the file that the extensions page will show
+
+`npm install vss-web-extension-sdk --save`
+
+Then create the extension manifest in a file named as `vss-extension.json` with the follow content
+
+```
+{
+    "manifestVersion": 1,
+    "id": "appsettings-vars-in-artifacts",
+    "name": "Replace appsettings variables in artifacts",
+    "version": "0.0.4",
+    "publisher": "Estrada",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Replace appsettings json variables with environment variables in artifacts.",
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "images/extension-icon.png"        
+    },
+    "files": [
+        {
+            "path": "buildAndReleaseTask"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "custom-build-release-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "buildAndReleaseTask"
+            }
+        }
+    ]
+} 
+```
+
+Now create the HUB, is the file that the extensions page named as `my-hub.html` with the follow content
+
+```
+ <!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+	<script src="lib/VSS.SDK.min.js"></script>
+	<style>
+    	body {
+        	background-color: rgb(0, 67, 117);
+        	color: white;
+        	margin: 10px;    
+        	font-family: "Segoe UI VSS (Regular)","-apple-system",BlinkMacSystemFont,"Segoe UI",sans-serif;
+    	}
+	</style>
+	<script type="text/javascript">
+    	VSS.init();
+    	VSS.ready(function() {
+        	document.getElementById("name").innerText = VSS.getWebContext().user.name;
+    	});
+	</script>
+ </head>
+ <body>        
+	<h1>Hello, <span id="name"></span></h1>
+ </body>
+ </html>
+```
+
+
+
+TODO: crearte a publish profile at Marketplace
+
+Create a publish profile in  Marketplace management portal
+ https://aka.ms/vsmarketplace-manage
+
+ 
 
 TODO: PACKAGE
 TODO: Publish

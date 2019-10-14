@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "appsettings-vars-in-artifacts",
     "name": "Replace appsettings variables in artifacts",
-    "version": "0.0.4",
+    "version": "0.0.12",
     "publisher": "Estrada",
     "targets": [
         {
